@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-body">
+    <table class="table table-hover mb-0 border-bottom">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Tester Full Name</th>
+        <th scope="col">Experience</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tester of testers">
+        <td>{{ tester.fullName }}</td>
+        <td>{{ tester.experience }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
