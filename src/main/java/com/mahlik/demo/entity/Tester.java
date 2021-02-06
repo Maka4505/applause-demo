@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -85,6 +86,21 @@ public class Tester {
     public Tester setDevices(Set<Device> devices) {
         this.devices = devices;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tester tester = (Tester) o;
+        return id == tester.id && Objects.equals(firstName, tester.firstName)
+                && Objects.equals(lastName, tester.lastName) && Objects.equals(country, tester.country)
+                && Objects.equals(lastLogin, tester.lastLogin) && Objects.equals(devices, tester.devices);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, country, lastLogin, devices);
     }
 
     @Override

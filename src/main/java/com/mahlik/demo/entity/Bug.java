@@ -3,6 +3,7 @@ package com.mahlik.demo.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Bug {
@@ -51,6 +52,19 @@ public class Bug {
     public Bug setTesterId(long testerId) {
         this.testerId = testerId;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bug bug = (Bug) o;
+        return id == bug.id && deviceId == bug.deviceId && testerId == bug.testerId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, deviceId, testerId);
     }
 
     @Override

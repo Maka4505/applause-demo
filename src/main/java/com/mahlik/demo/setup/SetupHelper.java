@@ -38,7 +38,7 @@ public class SetupHelper {
                 });
     }
 
-    public static <T> List<T> loadObjectList(Class<T> type, String fileName) throws IllegalStateException {
+    public static <T> List<T> loadObjectList(Class<T> type, String fileName) {
         try {
             File file = new File(fileName);
             CsvSchema csvSchema = emptySchema().withHeader();

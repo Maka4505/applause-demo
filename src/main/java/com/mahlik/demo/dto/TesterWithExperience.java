@@ -1,6 +1,7 @@
 package com.mahlik.demo.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class TesterWithExperience implements Serializable {
 
@@ -31,6 +32,19 @@ public class TesterWithExperience implements Serializable {
     public TesterWithExperience setExperience(int experience) {
         this.experience = experience;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TesterWithExperience that = (TesterWithExperience) o;
+        return experience == that.experience && fullName.equals(that.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, experience);
     }
 
     @Override

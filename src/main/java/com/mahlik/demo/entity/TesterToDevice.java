@@ -1,6 +1,6 @@
 package com.mahlik.demo.entity;
 
-import javax.persistence.*;
+import java.util.Objects;
 
 
 public class TesterToDevice {
@@ -8,7 +8,8 @@ public class TesterToDevice {
     private long deviceId;
     private long testerId;
 
-    public TesterToDevice() {}
+    public TesterToDevice() {
+    }
 
     public TesterToDevice(
             long deviceId,
@@ -34,6 +35,19 @@ public class TesterToDevice {
     public TesterToDevice setTesterId(long testerId) {
         this.testerId = testerId;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TesterToDevice that = (TesterToDevice) o;
+        return deviceId == that.deviceId && testerId == that.testerId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(deviceId, testerId);
     }
 
     @Override

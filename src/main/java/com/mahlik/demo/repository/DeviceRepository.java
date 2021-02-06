@@ -8,10 +8,4 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public interface DeviceRepository extends CrudRepository<Device, Long> {
-
-    List<Device> findAllByDescription(String description);
-
-    List<Device> findAllByIdIn(Set<Long> description);
-
-}
+public interface DeviceRepository extends CrudRepository<Device, Long> {}

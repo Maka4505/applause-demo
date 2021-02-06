@@ -11,9 +11,7 @@ import com.mahlik.demo.repository.TesterRepository;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import static com.mahlik.demo.setup.SetupHelper.*;
@@ -40,58 +38,21 @@ public class Setup {
 
     @PostConstruct
     public void setupData() {
-        //setupDevices -> setupTesters -> setupBugs
-        setupDevicesAndTesters();
+        setupDevices();
+        setupTesters();
         setupBugs();
-
-//        testerRepository.findAll().forEach(System.out::println);// REMOVE ----------------------------------------------
-//        deviceRepository.findAll().forEach(System.out::println);
-//        System.out.println("\n\n-----------------------");
-//        System.out.println(testerRepository.findAllTestersByCountry("US"));
-//        System.out.println(testerRepository.findAllTestersByCountryIn(new HashSet<String>(){{
-//            add("US");
-//            add("GB");
-//        }}));
-//        System.out.println("-----------------------\n\n");
-//        System.out.println(testerRepository.findAllTestersByDevices_Description("iPhone 4S"));
-//        System.out.println("-----------------------\n\n");
-//        System.out.println(testerRepository.findAllTestersByDevices_DescriptionAndCountry("iPhone 5", "US"));
-//        System.out.println("-----------------------\n\n");
-//        System.out.println(testerRepository.findAllTestersByDevices_DescriptionInAndCountryIn(new HashSet<String>(){{
-//            add("iPhone 5");
-//            add("iPhone 4S");
-//        }}, new HashSet<String>(){{
-//            add("US");
-//            add("GB");
-//        }}));
-        //findAllTestersByDevices_DescriptionInAndCountryIn
-//        List<Tester> testersUSAndIphone5 = testerRepository.findAllTestersByDevices_DescriptionAndCountry("iPhone 5", "US");
-//        testersUSAndIphone5.forEach(t -> {
-//            bugRepository.findAllByTesterId(t.getId()).forEach(System.out::println);
-//        });
-
-        System.out.println("\n --- SETUP --- \n");
     }
 
-    private void setupBugs() {
-        loadObjectList(Bug.class, properties.getBugsPath()).forEach(bugRepository::save);
-    }
-
-    private void setupDevicesAndTesters() {
-        List<Device> devices = getDevices();
-        for (Device device : devices) {
-            persistDevice(device);
-        }
-
-        List<Tester> testers = getTesters();
-//        testers.forEach(this::persistTester);
-        for (Tester tester : testers) {
-            persistTester(tester);
-        }
+    private void setupDevices() {
+        getDevices().forEach(deviceRepository::save);
     }
 
     public List<Device> getDevices() {
         return loadObjectList(Device.class, properties.getDevicesPath());
+    }
+
+    private void setupTesters() {
+        getTesters().forEach(testerRepository::save);
     }
 
     public List<Tester> getTesters() {
@@ -109,25 +70,8 @@ public class Setup {
         return testers;
     }
 
-    public void persistTester(Tester tester) {
-        if (!testerRepository.findById(tester.getId()).isPresent()) {
-            Set<Device> devices = tester.getDevices();
-            Set<Device> persistedDevices = new HashSet<>();
-
-            for (Device device : devices) {
-                Optional<Device> persistedDevice = deviceRepository.findById(device.getId());
-                persistedDevice.ifPresent(persistedDevices::add);
-            }
-            tester.setDevices(persistedDevices);
-
-            testerRepository.save(tester);
-        }
-    }
-
-    public void persistDevice(Device device) {
-        if (!deviceRepository.findById(device.getId()).isPresent()) {
-            deviceRepository.save(device);
-        }
+    private void setupBugs() {
+        loadObjectList(Bug.class, properties.getBugsPath()).forEach(bugRepository::save);
     }
 
 }
