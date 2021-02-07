@@ -44,18 +44,18 @@ public class Setup {
     }
 
     private void setupDevices() {
-        getDevices().forEach(deviceRepository::save);
+        deviceRepository.saveAll(getDevices());
     }
 
-    public List<Device> getDevices() {
+    private List<Device> getDevices() {
         return loadObjectList(Device.class, properties.getDevicesPath());
     }
 
     private void setupTesters() {
-        getTesters().forEach(testerRepository::save);
+        testerRepository.saveAll(getTesters());
     }
 
-    public List<Tester> getTesters() {
+    private List<Tester> getTesters() {
         List<Device> allDevices = getDevices();
         List<Tester> testers = loadObjectList(Tester.class, properties.getTestersPath());
         List<TesterToDevice> testersToDevices = loadObjectList(TesterToDevice.class, properties.getTesterDevicePath());
@@ -71,7 +71,11 @@ public class Setup {
     }
 
     private void setupBugs() {
-        loadObjectList(Bug.class, properties.getBugsPath()).forEach(bugRepository::save);
+        bugRepository.saveAll(getBugs());
+    }
+
+    private List<Bug> getBugs() {
+        return loadObjectList(Bug.class, properties.getBugsPath());
     }
 
 }

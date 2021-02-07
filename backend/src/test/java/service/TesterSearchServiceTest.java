@@ -48,7 +48,7 @@ public class TesterSearchServiceTest {
             new Device().setId(3L).setDescription("iPhone 5")
     );
     List<Tester> testers = asList(
-            createTester(1L, "GB", "Jan", "Kowalski",
+            createTester(1L, "GB", "Tomcio", "Paluch",
                     devices.get(0),
                     devices.get(1)
             ),
@@ -86,8 +86,8 @@ public class TesterSearchServiceTest {
         // then
         assertThat(testersWithExperience.size()).isEqualTo(2);
         assertTestersWithExperienceAreInCorrectOrder(testersWithExperience);
-        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(0), "Janko Walski", 7);
-        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(1), "Jan Kowalski", 5);
+        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(0),2L, "Janko Walski", 7);
+        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(1), 1L,"Tomcio Paluch", 5);
     }
 
     @Test
@@ -105,8 +105,8 @@ public class TesterSearchServiceTest {
         // then
         assertThat(testersWithExperience.size()).isEqualTo(2);
         assertTestersWithExperienceAreInCorrectOrder(testersWithExperience);
-        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(0), "Janko Walski", 7);
-        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(1), "Jan Kowalski", 5);
+        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(0),2L, "Janko Walski", 7);
+        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(1), 1L,"Tomcio Paluch", 5);
     }
 
     @Test
@@ -125,8 +125,8 @@ public class TesterSearchServiceTest {
         // then
         assertThat(testersWithExperience.size()).isEqualTo(2);
         assertTestersWithExperienceAreInCorrectOrder(testersWithExperience);
-        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(0), "Janko Walski", 7);
-        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(1), "Jan Kowalski", 5);
+        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(0),2L, "Janko Walski", 7);
+        assertTesterWithExperienceHasCorrectValues(testersWithExperience.get(1), 1L,"Tomcio Paluch", 5);
     }
 
     private Tester createTester(long id, String country, String firstName, String lastName, Device... devices) {

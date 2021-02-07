@@ -5,15 +5,27 @@ import java.util.Objects;
 
 public class TesterWithExperience implements Serializable {
 
+    private long id;
     private String fullName;
     private int experience;
 
     public TesterWithExperience(
+            long id,
             String testerFullName,
             int experience
     ) {
+        this.id = id;
         this.fullName = testerFullName;
         this.experience = experience;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public TesterWithExperience setId(long id) {
+        this.id = id;
+        return this;
     }
 
     public String getFullName() {
@@ -39,18 +51,19 @@ public class TesterWithExperience implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TesterWithExperience that = (TesterWithExperience) o;
-        return experience == that.experience && fullName.equals(that.fullName);
+        return id == that.id && experience == that.experience && Objects.equals(fullName, that.fullName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fullName, experience);
+        return Objects.hash(id, fullName, experience);
     }
 
     @Override
     public String toString() {
         return "TesterWithExperience{" +
-                "testerFullName='" + fullName + '\'' +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
                 ", experience=" + experience +
                 '}';
     }

@@ -37,6 +37,7 @@ public class TesterSearchIntegrationTest {
         assertThat(testersWithExperience.size()).isEqualTo(1);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(0),
+                2L,
                 "Michael Lubavin",
                 17);
     }
@@ -69,14 +70,17 @@ public class TesterSearchIntegrationTest {
         assertTestersWithExperienceAreInCorrectOrder(testersWithExperience);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(0),
+                4L,
                 "Taybin Rutkin",
                 125);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(1),
+                1L,
                 "Miguel Bautista",
                 114);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(2),
+                2L,
                 "Michael Lubavin",
                 99);
     }
@@ -91,26 +95,32 @@ public class TesterSearchIntegrationTest {
         assertTestersWithExperienceAreInCorrectOrder(testersWithExperience);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(0),
+                9L,
                 "Darshini Thiagarajan",
                 28);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(1),
+                3L,
                 "Leonard Sutton",
                 27);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(2),
+                7L,
                 "Lucas Lowry",
                 25);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(3),
+                8L,
                 "Sean Wellington",
                 23);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(4),
+                5L,
                 "Mingquan Zheng",
                 13);
         assertTesterWithExperienceHasCorrectValues(
                 testersWithExperience.get(5),
+                2L,
                 "Michael Lubavin",
                 11);
     }

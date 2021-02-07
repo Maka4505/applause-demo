@@ -11,9 +11,11 @@ public class TesterSearchTestsHelper {
 
     public static void assertTesterWithExperienceHasCorrectValues(
             TesterWithExperience testerWithExperience,
+            long id,
             String fullName,
             int experience
     ) {
+        assertThat(testerWithExperience.getId()).isEqualTo(id);
         assertThat(testerWithExperience.getFullName()).isEqualTo(fullName);
         assertThat(testerWithExperience.getExperience()).isEqualTo(experience);
     }

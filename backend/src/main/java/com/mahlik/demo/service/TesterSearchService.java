@@ -51,6 +51,7 @@ public class TesterSearchService {
     private List<TesterWithExperience> prepareTestersWithExperience(List<Tester> testers, Optional<Set<Long>> devicesIds) {
         return testers.stream()
                 .map(tester -> new TesterWithExperience(
+                        tester.getId(),
                         getTesterFullName(tester),
                         getTesterExperience(tester, devicesIds))
                 )

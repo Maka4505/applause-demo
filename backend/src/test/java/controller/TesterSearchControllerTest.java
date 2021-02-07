@@ -42,8 +42,8 @@ public class TesterSearchControllerTest {
             add(2L);
         }});
         when(testerSearchService.getTestersWithExperienceByProvidedCriteria(countries, deviceIds)).thenReturn(Arrays.asList(
-                new TesterWithExperience("Jan Kowalski", 48),
-                new TesterWithExperience("Janko Walski", 36)
+                new TesterWithExperience(1L,"Tomcio Paluch", 48),
+                new TesterWithExperience(2L,"Janko Walski", 36)
         ));
         // when
         List<TesterWithExperience> testers = testerSearchController.getTestersWithExperience(countries, deviceIds);
@@ -52,10 +52,12 @@ public class TesterSearchControllerTest {
         assertThat(testers.get(0).getExperience()).isGreaterThan(testers.get(1).getExperience());
         assertTesterWithExperienceHasCorrectValues(
                 testers.get(0),
-                "Jan Kowalski",
+                1L,
+                "Tomcio Paluch",
                 48);
         assertTesterWithExperienceHasCorrectValues(
                 testers.get(1),
+                2L,
                 "Janko Walski",
                 36);
     }
