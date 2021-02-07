@@ -1,0 +1,22 @@
+<div class="border rounded-0 bg-white">
+  <div class="px-4 py-2 d-sm-flex flex-sm-row justify-content-between">
+
+    <criteria-dropdown
+      #countriesDropdown
+      [placeholder]="'Countries'"
+      [dropdownListItems]="countries">
+    </criteria-dropdown>
+
+    <criteria-dropdown
+      #devicesDropdown
+      [placeholder]="'Devices'"
+      [dropdownListItems]="devices">
+    </criteria-dropdown>
+
+    <button type="button" class="btn btn-primary"
+            (click)="handleSearchButtonClick(countriesDropdown.selectedItems, devicesDropdown.selectedItems)">
+      {{searchButtonLabel}}
+    </button>
+
+  </div>
+</div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {TesterWithExperience} from "./model/tester-with-experience";
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  title: string;
+  searchResults: TesterWithExperience[] = [];
 
-  constructor() {
-    this.title = 'Applause Demo';
+  onSearchResults(searchResults: TesterWithExperience[]) {
+    this.searchResults = searchResults;
   }
+
 }

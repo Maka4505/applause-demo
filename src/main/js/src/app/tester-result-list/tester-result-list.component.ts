@@ -1,25 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {TesterService} from "../service/tester-service.service";
-import {Tester} from "../model/tester";
+import {Component, Input} from '@angular/core';
+import {TesterWithExperience} from "../model/tester-with-experience";
 
 @Component({
   selector: 'tester-result-list',
   templateUrl: './tester-result-list.component.html',
   styleUrls: ['./tester-result-list.component.css']
 })
-export class TesterResultListComponent implements OnInit {
+export class TesterResultListComponent {
 
-  testers: Tester[];
-
-  constructor(private testerService: TesterService) {
-  }
-
-  ngOnInit() {
-    console.log("TesterResultListComponent");
-    this.testerService.findAll().subscribe(data => {
-      console.log("TesterResultListComponent", data);
-      this.testers = data;
-    });
-  }
+  @Input("searchResults")
+  testersWithExperience: TesterWithExperience[];
 
 }

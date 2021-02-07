@@ -30,15 +30,18 @@ public class TesterSearchService {
         this.bugRepository = bugRepository;
     }
 
-    public List<TesterWithExperience> getTestersWithExperienceByProvidedCriteria(Optional<Set<String>> countries, Optional<Set<Long>> devicesIds) {
+    public List<TesterWithExperience> getTestersWithExperienceByProvidedCriteria(
+            Optional<Set<String>> countries,
+            Optional<Set<Long>> devicesIds
+    ) {
         List<Tester> testers = emptyList();
 
         if (countries.isPresent() && devicesIds.isPresent()) {
-            testers = testerRepository.findAllTestersByDevices_IdInAndCountryIn(devicesIds.get(), countries.get());
+            testers = testerRepository.findDistinctTestersByCountryInAndDevices_IdIn(countries.get(), devicesIds.get());
         } else if (devicesIds.isPresent()) {
-            testers = testerRepository.findAllTestersByDevices_IdIn(devicesIds.get());
+            testers = testerRepository.findDistinctTestersByDevices_IdIn(devicesIds.get());
         } else if (countries.isPresent()) {
-            testers = testerRepository.findAllTestersByCountryIn(countries.get());
+            testers = testerRepository.findDistinctTestersByCountryIn(countries.get());
         }
 
         return prepareTestersWithExperience(testers, devicesIds);
@@ -60,10 +63,10 @@ public class TesterSearchService {
     }
 
     private int getTesterExperience(Tester tester, Optional<Set<Long>> devicesIds) {
-        return devicesIds.map(deviceIds -> bugRepository.countAllByTesterIdAndDeviceIdIn(
+        return devicesIds.map(deviceIds -> bugRepository.countDistinctByTesterIdAndDeviceIdIn(
                 tester.getId(),
                 deviceIds
-        )).orElseGet(() -> bugRepository.countAllByTesterId(
+        )).orElseGet(() -> bugRepository.countDistinctByTesterId(
                 tester.getId()
         ));
     }
